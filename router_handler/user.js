@@ -1,5 +1,7 @@
 let db = require('../db/index')
 let bcryct = require('bcryptjs')
+let jwt = require('jsonwebtoken')
+let config = require('../config')
 
 exports.register = (req,res) => {
     //获取信息
@@ -41,5 +43,18 @@ exports.register = (req,res) => {
 }
 
 exports.login = (req,res) => {
-    res.send('login OK')
+    let userinfo = req.body
+    const sql = 'select * from ev_users where username = ?'
+    db.query(sql,userinfo.username,(err,results)=>{
+        if(err) return res.cc(err)
+        if(results.length != 1) return res.cc('登陆失败')
+        //比较传来的密码和数据库中的密码是否一样
+        const comparePass = bcryct.compareSync(userinfo.password,results[0])
+        if(!comparePass) return res.cc('密码错误')
+        //登录成功，生成token
+        //核心：通过 ES6 的高级语法，快速剔除 密码 和 头像 的值，目的是为了保证用户信息的安全性
+        const user = {...userinfo,password:'',user_pic:''}
+        //生成token字符串
+        
+    })
 }

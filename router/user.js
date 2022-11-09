@@ -12,6 +12,6 @@ let userHandle = require('../router_handler/user')
 router.post('/register',expressjoi(rules),userHandle.register)
 
 //监听登录功能
-router.post('/login',userHandle.login)
+router.post('/login',expressjoi(rules),userHandle.login)
 
 module.exports = router
