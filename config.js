@@ -1,3 +1,4 @@
 module.exports = {
-    jwtScretKey: 'IQ up up up'
-}
+  jwtSecretKey: "IQ up up up",
+  expiresIn: "10h",
+};

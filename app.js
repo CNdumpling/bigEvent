@@ -8,7 +8,7 @@ let expressJWT = require('express-jwt')
 let cors = require('cors')
 app.use(cors())
 //中间件解析token，并用unless()指定哪些接口不需要解析
-app.use(expressJWT({secret: config.jwtScretKey}).unless({path:[/^\/api\//]}) )  
+app.use(expressJWT({secret: config.jwtSecretKey }).unless({path:[/^\/api\//]}) )  
 
 //配置解析 application/x-www-form-urlencoded 格式的表单数据的中间件
 app.use(express.urlencoded({extended: false}))
