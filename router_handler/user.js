@@ -55,6 +55,13 @@ exports.login = (req,res) => {
         //核心：通过 ES6 的高级语法，快速剔除 密码 和 头像 的值，目的是为了保证用户信息的安全性
         const user = {...userinfo,password:'',user_pic:''}
         //生成token字符串
-        
+        let tokenStr = jwt.sign(user,config.jwtScretKey,{expiresIn:'10h'}) //设置token有效期10h
+        //将token响应给服务端
+        res.send({
+            status: 0,
+            message: '登录成功',
+            token: 'Bearer'+tokenStr        //方便客户端，直接在服务器拼接好传到前端
+            
+        })
     })
 }
