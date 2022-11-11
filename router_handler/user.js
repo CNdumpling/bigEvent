@@ -60,7 +60,7 @@ exports.login = (req,res) => {
         res.send({
             status: 0,
             message: '登录成功',
-            token: 'Bearer'+tokenStr        //方便客户端，直接在服务器拼接好传到前端
+            token: 'Bearer '+tokenStr        //方便客户端，直接在服务器拼接好传到前端
             
         })
     })
